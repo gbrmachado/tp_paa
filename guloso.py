@@ -11,5 +11,14 @@ NOME_ARQUIVO = sys.argv[1] # Obtem o nome do arquivo a ser lido
 lista_atividades = Leitura(NOME_ARQUIVO).get_atividades() #gera lista de atividades a partir de leitura de arquivo
 
 lista_atividades.sort(key = lambda x: x.get_fim())  #ordena lista de atividades
-for i in lista_atividades:
+
+lista_selecionadas = [lista_atividades[0]]
+ultima_selecionada = lista_atividades[0]
+
+for atividade in lista_atividades[1:]:
+    if atividade.get_inicio() >= ultima_selecionada.get_fim():
+        lista_selecionadas.append(atividade)
+        ultima_selecionada = atividade
+
+for i in lista_selecionadas:
     i.print_atividade()
