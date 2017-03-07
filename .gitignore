@@ -1,2 +1,10 @@
-*.pyc
-arquivos/*
+*.pdf
+*.aux
+*.lot
+*.toc
+*.bbl
+*.lof
+*.log
+*.blg
+*.out
+Thumbs.db
