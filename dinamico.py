@@ -25,7 +25,7 @@ i = NUM_JOBS - 1
 while i >= 0:
     #calcula o mais proximo
     j = i-1
-    while LISTA_ATIVIDADES[j].get_fim() >= LISTA_ATIVIDADES[i].get_inicio() and j > 0:
+    while LISTA_ATIVIDADES[j].get_fim() > LISTA_ATIVIDADES[i].get_inicio() and j > 0:
         j = j - 1
 
     if 1 + T[j] > T[i-1]:

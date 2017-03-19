@@ -22,3 +22,5 @@ for atividade in lista_atividades[1:]:
 
 for i in lista_selecionadas:
     i.print_atividade()
+
+print "Numero maximo de atividades: " + str(len(lista_selecionadas))
