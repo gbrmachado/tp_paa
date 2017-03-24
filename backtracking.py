@@ -15,37 +15,41 @@ LISTA_ATIVIDADES.sort(key = lambda x: x.get_fim())  #ordena lista de atividades
 NUM_JOBS = len(LISTA_ATIVIDADES)
 
 i = NUM_JOBS - 1
-lista_selecionadas = []
-otimaVlr = 0
+melhor = 0
 solucaoOtima = []
-
-def backtracking(i):
-    global otimaVlr
-    global solucaoOtima
-    global lista_selecionadas
-    #   Retorna todas as atividades compativeis
-    lista_compativeis = compativeis(i)
-    if len(lista_compativeis) == 0:
-        return LISTA_ATIVIDADES[i]
-    for j in range(0, len(lista_compativeis)-1):
-        lista_selecionadas.append( backtracking(lista_compativeis[j]))
-    lista_selecionadas.append(LISTA_ATIVIDADES[i])
-    if  otimaVlr < len(lista_selecionadas):
-        otimaVlr = len(lista_selecionadas)
-        solucaoOtima = lista_selecionadas
-    lista_selecionadas =[]
-    return LISTA_ATIVIDADES[i]
+lista_selecionadas = []
 
 def compativeis(i):
     lista_compativeis = []
-    for j in range(0,NUM_JOBS-1):
+    for j in range( 0, NUM_JOBS ):
         if LISTA_ATIVIDADES[j].get_inicio() >= LISTA_ATIVIDADES[i].get_fim() and LISTA_ATIVIDADES[i] != LISTA_ATIVIDADES[j]:
             lista_compativeis.append(j)
     return lista_compativeis
 
-for a in range(0,i):
+def backtracking(i):
+    global lista_selecionadas
+    global melhor
+    global solucaoOtima
+
+    lista_selecionadas.append( LISTA_ATIVIDADES[i] )
+    tamSelecionadas = len( lista_selecionadas )
+    lista_compativeis = compativeis(i)
+
+    if len( lista_compativeis )  == 0:
+        if melhor <= tamSelecionadas:
+            melhor = tamSelecionadas
+            solucaoOtima = lista_selecionadas
+    else:
+        for k in lista_compativeis:
+            backtracking( k )
+
+    #   Remove o ultimo elemento
+    lista_selecionadas.pop()
+    return
+
+for a in range(0,NUM_JOBS):
+    lista_selecionadas = []
     backtracking(a)
 
-solucaoOtima.sort(key = lambda x: x.get_inicio() )
-for atividade in solucaoOtima:
-    atividade.print_atividade()
+for i in solucaoOtima:
+    print i.print_atividade()
