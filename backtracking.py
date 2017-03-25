@@ -3,6 +3,7 @@
     atraves de um metodo de backtracking  """
 
 import sys
+import copy
 
 from classes.atividade import Atividade
 from classes.leitura import Leitura
@@ -38,7 +39,7 @@ def backtracking(i):
     if len( lista_compativeis )  == 0:
         if melhor <= tamSelecionadas:
             melhor = tamSelecionadas
-            solucaoOtima = lista_selecionadas
+            solucaoOtima = copy.copy( lista_selecionadas )
     else:
         for k in lista_compativeis:
             backtracking( k )
