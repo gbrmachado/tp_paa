@@ -39,5 +39,8 @@ do
     do
         arquivo="$(pwd)/arquivos/$n/$j.txt"
         gera_atividade $n $m > $arquivo
+        python guloso.py $arquivo -t >> "$(pwd)/resultados/guloso_$n.txt"
+        python dinamico.py $arquivo -t >> "$(pwd)/resultados/dinamico_$n.txt"
+        python backtracking.py $arquivo -t >> "$(pwd)/resultados/backtracking_$n.txt"
     done
 done
