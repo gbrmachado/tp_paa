@@ -3,6 +3,9 @@
     atraves de um metodo de programacao dinamica  """
 
 import sys
+import time
+
+start = time.time()
 
 from classes.atividade import Atividade
 from classes.leitura import Leitura
@@ -29,9 +32,14 @@ while i >= 0:
         j = j - 1
 
     if 1 + T[j] > T[i-1]:
-        LISTA_ATIVIDADES[i].print_atividade()
+        if (sys.argv[2] == "-p"):
+            LISTA_ATIVIDADES[i].print_atividade()
         i = j
     else:
         i = i-1
 
-print "numero maximo de Tarefas: "+ str( max(T))
+if (sys.argv[2] == "-p"):
+    print "numero maximo de Tarefas: "+ str( max(T))
+
+if (sys.argv[2] == "-t"):
+    print time.time() - start

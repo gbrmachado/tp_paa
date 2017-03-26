@@ -4,6 +4,9 @@
 
 import sys
 import copy
+import time
+
+start = time.time()
 
 from classes.atividade import Atividade
 from classes.leitura import Leitura
@@ -52,5 +55,10 @@ for a in range(0,NUM_JOBS):
     lista_selecionadas = []
     backtracking(a)
 
-for i in solucaoOtima:
-    print i.print_atividade()
+
+if (sys.argv[2] == "-p"):
+    for i in solucaoOtima:
+        i.print_atividade()
+    print "Numero maximo de atividades: " + str(len(solucaoOtima))
+if (sys.argv[2] == "-t"):
+    print time.time() - start

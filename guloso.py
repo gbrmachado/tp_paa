@@ -3,6 +3,9 @@
     atraves de um metodo guloso """
 
 import sys
+import time
+
+start = time.time()
 
 from classes.atividade import Atividade
 from classes.leitura import Leitura
@@ -20,7 +23,9 @@ for atividade in lista_atividades[1:]:
         lista_selecionadas.append(atividade)
         ultima_selecionada = atividade
 
-for i in lista_selecionadas:
-    i.print_atividade()
-
-print "Numero maximo de atividades: " + str(len(lista_selecionadas))
+if (sys.argv[2] == "-p"):
+    for i in lista_selecionadas:
+        i.print_atividade()
+    print "Numero maximo de atividades: " + str(len(lista_selecionadas))
+if (sys.argv[2] == "-t"):
+    print time.time() - start
